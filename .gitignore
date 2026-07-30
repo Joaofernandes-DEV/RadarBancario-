@@ -1,0 +1,29 @@
+# Ambientes virtuais
+.venv/
+venv/
+env/
+
+# Caches do Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# IDEs e ferramentas locais
+.idea/
+.vscode/
+.claude/
+
+# Sistema operacional
+Thumbs.db
+.DS_Store
+
+# Segredos e variáveis locais
+.env
+
+# Documento de planejamento pessoal (não faz parte do portfólio)
+ideiadeprojeto.txt
+
+# Observação: data/radar.db é versionado de propósito —
+# o GitHub Actions atualiza o banco diariamente e o deploy
+# do dashboard no Streamlit Cloud lê direto do repositório.

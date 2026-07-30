@@ -1,0 +1,48 @@
+# Fase 4 do roteiro: o pipeline roda sozinho todo dia útil.
+# A coleta é incremental (só baixa o que falta) e o banco atualizado
+# é commitado de volta ao repositório — o dashboard no Streamlit
+# Community Cloud sempre lê dados frescos.
+
+name: Coleta diária
+
+on:
+  schedule:
+    - cron: "0 12 * * 1-5" # 09:00 no horário de Brasília (UTC-3), dias úteis
+  workflow_dispatch: {} # permite disparo manual pela aba Actions
+
+jobs:
+  coletar:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout do repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Instalar dependências
+        run: pip install -r requirements.txt
+
+      - name: Rodar testes
+        run: pytest tests/ -q
+
+      - name: Executar coleta incremental
+        run: python main.py
+
+      - name: Commitar banco atualizado
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/radar.db
+          if git diff --cached --quiet; then
+            echo "Nenhum dado novo — nada a commitar."
+          else
+            git commit -m "chore: coleta diária automática ($(date -u +%Y-%m-%d))"
+            git push
+          fi

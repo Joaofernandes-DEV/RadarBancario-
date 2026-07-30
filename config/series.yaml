@@ -1,0 +1,47 @@
+# Catálogo de séries do SGS (Sistema Gerenciador de Séries Temporais do BCB).
+# Para adicionar um novo indicador ao Radar, basta incluir uma entrada aqui —
+# nenhuma alteração de código é necessária.
+#
+# Campos:
+#   codigo_sgs   — código oficial da série na API SGS do Banco Central
+#   slug         — identificador curto usado internamente e nas consultas
+#   nome         — nome de exibição no dashboard
+#   unidade      — unidade de medida exibida nos gráficos
+#   frequencia   — 'diaria' ou 'mensal'
+#   data_inicial — primeira data a coletar (ISO: YYYY-MM-DD)
+
+series:
+  - codigo_sgs: 432
+    slug: selic
+    nome: "Taxa Selic (meta definida pelo Copom)"
+    unidade: "% a.a."
+    frequencia: diaria
+    data_inicial: "2000-01-01"
+
+  - codigo_sgs: 1
+    slug: dolar
+    nome: "Dólar comercial (venda)"
+    unidade: "R$"
+    frequencia: diaria
+    data_inicial: "2000-01-01"
+
+  - codigo_sgs: 433
+    slug: ipca
+    nome: "IPCA (variação mensal)"
+    unidade: "% a.m."
+    frequencia: mensal
+    data_inicial: "2000-01-01"
+
+  - codigo_sgs: 21082
+    slug: inadimplencia
+    nome: "Inadimplência da carteira de crédito (total)"
+    unidade: "%"
+    frequencia: mensal
+    data_inicial: "2011-03-01"
+
+  - codigo_sgs: 20631
+    slug: credito
+    nome: "Concessões de crédito (total)"
+    unidade: "R$ milhões"
+    frequencia: mensal
+    data_inicial: "2011-03-01"
