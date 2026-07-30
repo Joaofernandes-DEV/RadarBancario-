@@ -6,6 +6,20 @@
 
 ---
 
+## 🖼️ O dashboard
+
+**Visão geral** — abas por indicador, KPIs do período e média móvel configurável:
+
+![Visão geral do dashboard](docs/dashboard-visao-geral.png)
+
+**Ciclo da Selic** — a série da meta do Copom com média móvel de 30 observações:
+
+![Aba da Taxa Selic](docs/dashboard-selic.png)
+
+**Painel de correlação** — dois indicadores alinhados na granularidade mensal (em SQL) com coeficiente de Pearson e dispersão:
+
+![Painel de correlações](docs/dashboard-correlacoes.png)
+
 ## 🏛️ Arquitetura
 
 ```mermaid

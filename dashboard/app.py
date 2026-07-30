@@ -67,9 +67,11 @@ def formatar_valor(valor: float | None, unidade: str) -> str:
         return "—"
     if "R$ milhões" in unidade:
         return f"R$ {valor:,.0f} mi".replace(",", ".")
+    # Converte o número para o formato brasileiro sem tocar na unidade.
+    numero = f"{valor:,.2f}".replace(".", "@").replace(",", ".").replace("@", ",")
     if unidade.startswith("R$"):
-        return f"R$ {valor:,.2f}".replace(".", "@").replace(",", ".").replace("@", ",")
-    return f"{valor:,.2f} {unidade}".replace(".", "@").replace(",", ".").replace("@", ",")
+        return f"R$ {numero}"
+    return f"{numero} {unidade}"
 
 
 def aba_indicador(serie: pd.Series, inicio: str, fim: str, janela: int) -> None:
